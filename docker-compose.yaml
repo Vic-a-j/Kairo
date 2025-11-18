@@ -1,0 +1,16 @@
+services:
+  Kairo: &Kairo
+    build:
+      context: .
+    develop:
+      watch:
+        - action: rebuild
+          path: .\
+    volumes:
+      - .:/Kairo
+    command: tail -F keepAlive #keep for testing
+
+  test:
+    <<: *Kairo
+    container_name: Kairo-test
+    command: tail -F keepAlive #keep for testing
