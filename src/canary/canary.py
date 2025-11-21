@@ -11,7 +11,7 @@ class Canary():
         self.mutations = mutations
         self.config = config
 
-    def add_condition(self, condition: str) -> None:
+    def add_condition(self, condition: Condition) -> None:
         if self.condition is not None:
             raise ValueError("Cannot add alredy existing condition to Canary.")
             

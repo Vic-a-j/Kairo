@@ -34,6 +34,7 @@ class Kairo():
 
 
     def create_canaries(self, canaries: list[dict]) -> None:
+        """Create canaries from configuration."""
         for canary in canaries:
             name = canary["name"]
             canary_condition = canary.get("condition")
@@ -51,6 +52,7 @@ class Kairo():
 
     
     def _create_condition(self, condition_dict: dict) -> Condition:
+        """Create condition object."""
         match_dict = condition_dict.get("match", {})
         match = Match(
                 path=match_dict.get("path"),
@@ -60,6 +62,7 @@ class Kairo():
 
 
     def _create_mutations(self, mutations_list: list[dict]) -> list[Mutation]:
+        """Create list of mutation objects."""
         mutations = []
         for mutation in mutations_list:
             if "filter" in mutation:
