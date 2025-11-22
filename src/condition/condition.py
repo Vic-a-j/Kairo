@@ -14,17 +14,14 @@ class Condition():
         self.match = match
 
     def matches(self, request) -> bool:
-        if not self.match:
-            return False
-        
         return self.match.with_value == self._find_value(request)
     
     def _find_value(self, request) -> Any:
         curr = request
         for path in self.match.path.split("."):
-            if path in curr:
-                curr = curr.get(path)
-            else:
+            if path not in curr:
                 return None
+            
+            curr = curr.get(path)
         return curr
 

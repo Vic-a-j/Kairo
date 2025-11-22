@@ -9,7 +9,7 @@ global_config:
       mutations:
         - filter:
             path: "dl_request_data.headers"
-            to_value: "dl_request_data.headers[?!contains(`['CA_ADJ', 'HIST_CRNCY']`, name)]"
+            to_value: "dl_request_data.headers[?!(contains(['CA_ADJ', 'HIST_CRNCY'], name))]"
       config:
           worker-parameters:
               dlj2_getbql_gethistory_bql_dataacq:
@@ -25,11 +25,12 @@ global_config:
                           validate:
                               - skip_if_empty: {}
               standardize_ids_before_input_merge: true
+
     - name: "COFI"
       mutations:
         - filter:
             path: "dl_request_data.fields"
-            to_value: "dl_request_data.fields[?fieldMetaData[?name='dlCommercialModelCategory' && value == '89']]"
+            to_value: "dl_request_data.fields[?fieldMetaData[?name=='dlCommercialModelCategory' && value == '89']]"
       config:
             worker-parameters:
                 dlj2_getbql_gethistory_bql_dataacq:
