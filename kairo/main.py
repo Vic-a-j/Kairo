@@ -1,14 +1,16 @@
 from __future__ import annotations
 
-from canary import Canary
-from condition import Condition, Match
-from mutation import Mutation, Filter
+from typing import Any
 
-from utils import get_yaml_data, get_json_data
+from .canary import Canary
+from .condition import Condition, Match
+from .mutation import Filter, Mutation
+from .utils import get_json_data, get_yaml_data
 
-class Kairo():
 
-    def __init__(self, canaries: list[Canary] = None):
+class Kairo:
+
+    def __init__(self, canaries: list[Canary] | None = None):
         self.canaries = canaries or []
 
 
@@ -33,7 +35,7 @@ class Kairo():
         self.canaries.append(canary)
 
 
-    def create_canaries(self, canaries: list[dict]) -> None:
+    def create_canaries(self, canaries: list[dict[str, Any]]) -> None:
         """Create canaries from configuration."""
         for canary in canaries:
             name = canary["name"]
@@ -51,31 +53,30 @@ class Kairo():
             )
 
     
-    def _create_condition(self, condition_dict: dict) -> Condition:
+    def _create_condition(self, condition_dict: dict[str, Any]) -> Condition:
         """Create condition object."""
-        match_dict = condition_dict.get("match")
-        match = Match(
+        match_dict = condition_dict.get("match", {})
+        match_obj = Match(
                 path=match_dict.get("path"),
                 with_value=match_dict.get("with_value"),
             )
-        return Condition(match)
+        return Condition(match_obj)
 
 
-    def _create_mutations(self, mutations_list: list[dict]) -> list[Mutation]:
+    def _create_mutations(self, mutations_list: list[dict[str, Any]]) -> list[Mutation]:
         """Create list of mutation objects."""
         mutations = []
         for mutation in mutations_list:
             if "filter" in mutation:
-                filter = Filter(
+                filter_obj = Filter(
                     path=mutation["filter"]["path"],
                     to_value=mutation["filter"]["to_value"]
                 )
-                mutation = Mutation(filter)
-                mutations.append(mutation)
+                mutations.append(Mutation(filter_obj))
         return mutations
         
 
-    def run(self, request: dict, override: bool = True) -> dict:
+    def run(self, request: dict[str, Any], override: bool = True) -> dict[str, Any]:
         """Run conditions and mutations from given request."""
         for canary in self.canaries:
             try:
@@ -87,34 +88,8 @@ class Kairo():
 
 
 if __name__ == "__main__":
-    kairo = Kairo()
-    kairo.load_from_yaml("canaries.yaml")
-    request = {
-        "metadata": {
-            "client_context": {
-            "Workflow": "gethistory"
-            }
-        },
-        "dl_request_data": {
-            "headers": [
-            { "name": "CA_ADJ", "value": "1" },
-            { "name": "HIST_CRNCY", "value": "USD" },
-            { "name": "OTHER_HEADER", "value": "keep-me" }
-            ],
-            "fields": [
-                {
-                    "name": "PX_LAST",
-                    "fieldMetaData": [
-                    { "name": "dlCommercialModelCategory", "value": "12" }
-                    ]
-                },
-                {
-                    "name": "COFI_RATE",
-                    "fieldMetaData": [
-                    { "name": "dlCommercialModelCategory", "value": "89" }
-                    ]
-                }
-            ]
-        }
-    }
-    test = kairo.run(request, override=False)
+    ### Example usage:
+    # kairo = Kairo()
+    # kairo.load_from_yaml("canaries.yaml")
+    # result = kairo.run({"some": "request"})
+    pass

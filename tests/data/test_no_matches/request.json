@@ -1,0 +1,28 @@
+{
+    "metadata": {
+        "client_context": {
+        "Workflow": "gethistory"
+        }
+    },
+    "dl_request_data": {
+        "headers": [
+        { "name": "CA_ADJ", "value": "1" },
+        { "name": "HIST_CRNCY", "value": "USD" },
+        { "name": "OTHER_HEADER", "value": "keep-me" }
+        ],
+        "fields": [
+            {
+                "name": "PX_LAST",
+                "fieldMetaData": [
+                { "name": "dlCommercialModelCategory", "value": "12" }
+                ]
+            },
+            {
+                "name": "COFI_RATE",
+                "fieldMetaData": [
+                { "name": "dlCommercialModelCategory", "value": "89" }
+                ]
+            }
+        ]
+    }
+}

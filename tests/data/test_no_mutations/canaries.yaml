@@ -1,0 +1,32 @@
+global_config:
+  name: "root"
+  canaries:
+    - name: "GetHistory Workflow"
+      condition:
+        match:
+          path: "metadata.client_context.Workflow"
+          with_value: "gethistory"
+      mutations:
+        - filter:
+            path: "dl_request_data.headers"
+            to_value: "dl_request_data.headers[?!(contains(['NO_HEADER_1', 'NO_HEADER_2'], no_val))]"
+      config:
+
+    - name: "COFI"
+      condition:
+        match:
+          path: "metadata.client_context.Workflow"
+          with_value: "no_value"
+      mutations:
+        - filter:
+            path: "dl_request_data.fields"
+            to_value: "dl_request_data.fields[?fieldMetaData[?name=='dlCommercialModelCategory' && value == '89']]"
+      config:
+            worker-parameters:
+                dlj2_getbql_gethistory_bql_dataacq:
+                    build_query:
+                        secondary_columns:
+                            - "PERIOD"
+                            - "PERIOD_END_DATE"
+                            - "AS_OF_DATE"
+                            - "CURRENCY"
