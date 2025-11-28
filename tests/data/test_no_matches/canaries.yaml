@@ -1,0 +1,12 @@
+global_config:
+  name: "root"
+  canaries:
+    - name: "Test Workflow"
+      condition:
+        match:
+          path: "metadata.client_context.no_workflow"
+          with_value: "missing"
+      mutations:
+        - filter:
+            path: "dl_request_data.headers"
+            to_value: "dl_request_data.headers[?!(contains(['CA_ADJ', 'HIST_CRNCY'], name))]"

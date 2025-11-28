@@ -1,0 +1,50 @@
+{
+    "metadata": {
+        "client_context": {
+        "Workflow": "gethistory"
+        }
+    },
+    "dl_request_data": {
+        "headers": [
+        { "name": "OTHER_HEADER", "value": "keep-me" }
+        ],
+        "fields": [
+            {
+                "name": "COFI_RATE",
+                "fieldMetaData": [
+                { "name": "dlCommercialModelCategory", "value": "89" }
+                ]
+            }
+        ]
+    },
+    "worker-parameters": {
+        "dlj2_getbql_gethistory_bql_dataacq": {
+            "build_query": {
+                "batch_sizes": {
+                    "field": 10000,
+                    "security": 25,
+                    "date": 10000
+                },
+                "secondary_columns": [
+                    "PERIOD", 
+                    "PERIOD_END_DATE", 
+                    "AS_OF_DATE", 
+                    "CURRENCY"
+                ]
+            },
+            "python_profiling": {
+                "disabled": ""
+            },
+            "process_bql_dataframes": {
+                "process_single_bql_dataframe": {
+                    "validate": [
+                        {
+                            "skip_if_empty": {}
+                        }
+                    ]
+                }
+            }
+        },
+        "standardize_ids_before_input_merge": true
+    }
+}

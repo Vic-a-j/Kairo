@@ -1,0 +1,32 @@
+{
+    "metadata": {
+        "client_context": {
+        "Workflow": "gethistory"
+        }
+    },
+    "dl_request_data": {
+        "headers": [
+        { "name": "OTHER_HEADER", "value": "keep-me" }
+        ],
+        "fields": [
+            {
+                "name": "COFI_RATE",
+                "fieldMetaData": [
+                { "name": "dlCommercialModelCategory", "value": "89" }
+                ]
+            }
+        ]
+    },
+    "worker-parameters": {
+        "dlj2_getbql_gethistory_bql_dataacq": {
+            "build_query": {
+                "secondary_columns": [
+                    "PERIOD", 
+                    "PERIOD_END_DATE", 
+                    "AS_OF_DATE", 
+                    "CURRENCY"
+                ]
+            }
+        }
+    }
+}
