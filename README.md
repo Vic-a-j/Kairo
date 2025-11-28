@@ -1,4 +1,4 @@
-<h1 align="center">~ Kairo</h1>
+<h1 align="center">kairo-engine</h1>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Vic-a-j/Kairo/main/images/kairo-img.png" width="400">
