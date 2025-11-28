@@ -29,6 +29,11 @@ up:
 	$(DC) up
 
 
+.PHONY: up-test
+up:
+	$(DC) up test
+
+
 .PHONY: down
 down:
 	$(DC) down

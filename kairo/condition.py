@@ -22,7 +22,7 @@ class Condition:
         """Finds value given path."""
         curr_dict: Any = request
         for path_str in self.match.path.split("."):
-            if path_str not in curr_dict or not isinstance(curr_dict.get(path_str), dict):
+            if path_str not in curr_dict:
                 return None
             
             curr_dict = curr_dict.get(path_str)

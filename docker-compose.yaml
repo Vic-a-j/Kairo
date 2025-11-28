@@ -13,4 +13,8 @@ services:
   test:
     <<: *kairo
     container_name: kairo-test
-    command: tail -F keepAlive #keep for testing
+    command:
+    - python3.12
+    - "-m"
+    - pytest
+    - tests

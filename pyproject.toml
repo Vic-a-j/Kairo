@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kairo"
-version = "1.0.0"
+version = "1.0.1"
 description = "A configuration-driven engine that dynamically mutates incoming payloads based on conditional rules defined in YAML or JSON."
 authors = [{ name = "Victor Juarez", email = "vjuarez7@gmail.com" }]
 readme = "README.md"

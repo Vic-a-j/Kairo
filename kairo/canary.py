@@ -26,7 +26,7 @@ class Canary:
         if self.mutations:
             self.mutations.append(mutation)
             return
-        
+          
         self.mutations = [mutation]
 
     def add_config(self, new_config: dict[str, Any]) -> None:
