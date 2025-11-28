@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "kairo"
+name = "kairo-engine"
 version = "1.0.1"
 description = "A configuration-driven engine that dynamically mutates incoming payloads based on conditional rules defined in YAML or JSON."
 authors = [{ name = "Victor Juarez", email = "vjuarez7@gmail.com" }]
