@@ -10,7 +10,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.12+-blue.svg?style=flat-square"/>
-  <img src="https://img.shields.io/github/v/release/Vic-a-j/Kairo?style=flat-square"/>
+  <img src="https://img.shields.io/github/v/release/Vic-a-j/kairo-engine?style=flat-square"/>
 </p>
 
 ---
